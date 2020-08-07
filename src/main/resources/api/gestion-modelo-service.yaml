@@ -1,0 +1,287 @@
+swagger: '2.0'
+info:
+    title: gestion-modelo-service.yaml
+    version: 1.0.0
+paths:
+    /categorias/categoria:
+        get:
+            tags:
+                - Categoria
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Categorias'
+                '400':
+                    schema:
+                        $ref: '#/definitions/Categorias'
+        post:
+            tags:
+                - Categoria
+            parameters:
+                -
+                    name: body
+                    schema:
+                        $ref: '#/definitions/Categoria'
+                    in: body
+                    required: true
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Categorias'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Categorias'
+    '/categorias/categoria/id/{id}':
+        delete:
+            tags:
+                - Categorias
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Resultado'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Resultado'
+        parameters:
+            -
+                name: id
+                in: path
+                required: true
+                type: string
+    /hormas/horma:
+        get:
+            tags:
+                - Horma
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Hormas'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Hormas'
+        post:
+            tags:
+                - Hormas
+            parameters:
+                -
+                    name: body
+                    schema:
+                        $ref: '#/definitions/Horma'
+                    in: body
+                    required: true
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Hormas'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Hormas'
+    '/hormas/horma/id/{id}':
+        delete:
+            tags:
+                - Horma
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Resultado'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Resultado'
+        parameters:
+            -
+                name: id
+                in: path
+                required: true
+                type: string
+    '/hormas/horma/codigo/{codigo}':
+        get:
+            tags:
+                - Horma
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Hormas'
+                '400':
+                    description: Datos de entrada  incorrectos
+                    schema:
+                        $ref: '#/definitions/Hormas'
+        parameters:
+            -
+                name: codigo
+                in: path
+                required: true
+                type: string
+    /modelos/modelo:
+        get:
+            tags:
+                - Modelos
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Modelos'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Modelos'
+        post:
+            tags:
+                - Modelos
+            parameters:
+                -
+                    name: body
+                    schema:
+                        $ref: '#/definitions/Modelo'
+                    in: body
+                    required: true
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Modelos'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Modelos'
+    '/modelos/modelo/id/{id}':
+        delete:
+            tags:
+                - Modelos
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Resultado'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Resultado'
+        parameters:
+            -
+                name: id
+                in: path
+                required: true
+                type: string
+    '/modelos/modelo/codigo/{codigo}':
+        get:
+            tags:
+                - Modelos
+            responses:
+                '200':
+                    description: Operacion correcta
+                    schema:
+                        $ref: '#/definitions/Modelos'
+                '400':
+                    description: Datos de entrada incorrectos
+                    schema:
+                        $ref: '#/definitions/Modelos'
+        parameters:
+            -
+                name: codigo
+                in: path
+                required: true
+                type: string
+definitions:
+    Categoria:
+        description: ''
+        type: object
+        properties:
+            id:
+                description: Identificador de la categoria
+                type: string
+            nombre:
+                description: Nombre de la categoria
+                type: string
+    Categorias:
+        description: ''
+        type: object
+        properties:
+            resultado:
+                $ref: '#/definitions/Resultado'
+                description: Resultado de la operacion
+            categorias:
+                description: Lista de categoria
+                type: array
+                items:
+                    $ref: '#/definitions/Categoria'
+    Horma:
+        description: ''
+        type: object
+        properties:
+            id:
+                description: Identificador de la horma
+                type: string
+            codigo:
+                description: Codigo de la horma
+                type: string
+            categoria:
+                $ref: '#/definitions/Categoria'
+                description: Categoria de la horma
+            foto:
+                description: Foto de la horma
+                type: string
+    Hormas:
+        description: ''
+        type: object
+        properties:
+            resultado:
+                $ref: '#/definitions/Resultado'
+                description: Resultado de la operacion
+            hormas:
+                description: Lista de horma
+                type: array
+                items:
+                    $ref: '#/definitions/Horma'
+    Modelo:
+        description: ''
+        type: object
+        properties:
+            id:
+                description: Identificador del modelo
+                type: string
+            codigo:
+                description: Codigo del modelo
+                type: string
+            categoria:
+                $ref: '#/definitions/Categoria'
+                description: Categoria del modelo
+            horma:
+                $ref: '#/definitions/Horma'
+                description: horma del modelo
+            foto:
+                description: foto del modelo
+                type: string
+    Modelos:
+        description: ''
+        type: object
+        properties:
+            resultado:
+                $ref: '#/definitions/Resultado'
+                description: Resultado de la operacion
+            modelos:
+                description: Lista de modelo
+                type: array
+                items:
+                    $ref: '#/definitions/Modelo'
+    Resultado:
+        description: ''
+        type: object
+        properties:
+            mensajeRespuesta:
+                description: Mensaje de la respuesta
+                type: string
+            codigoRespuesta:
+                description: Codigo de la respuesta
+                type: string
